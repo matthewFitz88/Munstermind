@@ -16,10 +16,19 @@ def checkguess():
 
     #Hey student: your code here!!!!
 
-    hint = {'whitePegs':1, 'blackPegs':2} #create the hint as a dict
+    hint = {'whitePegs':0, 'blackPegs':0} #create the hint as a dict
+
+    for x in range(len(guess_list)):
+        if guess_list[x] == enigma_list[x]:
+            hint['blackPegs'] += 1
+
+    for x in range(len(guess_list)):
+        if guess_list[x] != enigma_list[x]:
+            if guess_list[x] in enigma_list:
+                hint ['whitePegs'] += 1
+
     print("the hint:", hint) #print out the hint to the console
     return jsonify(hint) #return the dict as a json
-
 
 @app.route('/tinker_json')
 def bar():
